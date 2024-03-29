@@ -1,0 +1,25 @@
+1. USB 1.x (Jan. 1996)
+- Low speed 1.5Mbit/s and Full speed 12Mbit/s;
+- Connector A and B;
+- No extensions due to timing and power limitations;
+
+2. USB 2.0 (Apr. 2000)
+- High speed 480Mbit/s;
+- Connectors Mini-A, Mini-B, Micro-USB;
+- On-The-Go (OTG);
+- Dedicated charging ports up to 1.5A;
+OTG is used to switch role between USB device and host. 
+For example, when an android phone is connected to PC through its USB, it is a device;
+but when it is connected to a flash drive to output the phone's photos and videos, it is a host.
+
+3. USB 3.x (Nov. 2008)
+- SuperSpeed 5Gbit/s;
+- SuperSpeed+ 10Gbit/s after USB 3.1 (2013);
+- SuperSpeed+ dual-lane 20Gbit/s after USB 3.2 (2017);
+- Connector A and C only;
+- Blue material internal
+
+4. USB4 (2019)
+- Thunderbolt 3 hardware interface 40Gbit/s;
+- Connector C only;
+

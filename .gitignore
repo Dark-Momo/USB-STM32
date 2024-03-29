@@ -1,3 +1,12 @@
+# Eclipse
+.metadata
+.settings
+[Rr]elease
+[Dd]ebug
+*/Debug/
+.launch
+
+# Below are from github C .gitignore file.
 # Prerequisites
 *.d
 

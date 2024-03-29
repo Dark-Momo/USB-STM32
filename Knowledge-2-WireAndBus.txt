@@ -1,0 +1,33 @@
+1. USB 2.0 Cable Structure
+There are 4 wires in USB 2.0 cable: VBUS, GND, D+/D-. And thee is a shield layer outside.
+VBUS, and GND can be used to power up bus-powered device.
+
+2. USB Main Feature
+(1) Hot-plug
+Just plug, don't need to restart or install driver. Host and device will negotiate about a proper driver and configuration.
+So USB is self-configured. 
+
+(2) Bus-power and Self-power
+Devices that consumes not that much power can be USB bus-powered;
+Otherwise, the device should be self-powered; 
+
+(3) Host controlled
+There always be one, and only one, host that controls all communications on the bus. It doesn't matter how many devices 
+are connected.
+
+(4) Vendor ID (VID) and Product ID (PID)
+Every USB device have these 2 IDs hardcoded. 
+For example, a mouse of the same model, from the same vendor, should have the same VID and PID. 
+But they should have different Serial Number.
+
+(5) Device Address
+Everytime a deive is connected to host, host will assign this device an unique address. This address will change for next hot-plug.
+ 
+(6) Device Enumeration
+During initial negotiation, host will recognize what the device is, what speed, and what driver for this device.
+
+(7) Bus polling/sampling
+Both host and device poll the bus to know the bus's current state, and then determine according actions. USB doesn't have interrupt.
+The bus state should stay enough long to wait for next polling.
+
+
