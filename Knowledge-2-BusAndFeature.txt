@@ -30,4 +30,9 @@ During initial negotiation, host will recognize what the device is, what speed, 
 Both host and device poll the bus to know the bus's current state, and then determine according actions. USB doesn't have interrupt.
 The bus state should stay enough long to wait for next polling.
 
-
+3. USB Bus Topology
+In USB, host and devices are connected to bus according to "tiered-start" topology. Up to 127 devices can be connected to bus incluing
+hubs. 
+(1) Device address is 7-bit and address 0 is reserved as initial address for every single newly connected device.
+(2) The maximum number of ties, or the maximum number of devices that are allowed to connect in series is 7;
+(5) Up to 5 hubs are allowed to be connected in series directly;
