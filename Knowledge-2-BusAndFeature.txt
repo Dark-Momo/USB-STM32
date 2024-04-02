@@ -27,12 +27,39 @@ Everytime a deive is connected to host, host will assign this device an unique a
 During initial negotiation, host will recognize what the device is, what speed, and what driver for this device.
 
 (7) Bus polling/sampling
-Both host and device poll the bus to know the bus's current state, and then determine according actions. USB doesn't have interrupt.
-The bus state should stay enough long to wait for next polling.
+Both host and device poll the bus to know the bus's current state, and then determine according actions. 
+USB doesn't have interrupt. The bus state should stay enough long to wait for next polling.
 
 3. USB Bus Topology
-In USB, host and devices are connected to bus according to "tiered-start" topology. Up to 127 devices can be connected to bus incluing
-hubs. 
+In USB, host and devices are connected to bus according to "tiered-start" topology.
+------------------------------------------------------------
+Why it is called "tiered-start" while it looks like a tree?
+For a hub in tie, its connection will look like a star.
+So on a hub, it looks like a star;
+But the whole USB net looks like a tree.
+------------------------------------------------------------
+Up to 127 devices can be connected to bus incluing hubs. 
 (1) Device address is 7-bit and address 0 is reserved as initial address for every single newly connected device.
 (2) The maximum number of ties, or the maximum number of devices that are allowed to connect in series is 7;
 (5) Up to 5 hubs are allowed to be connected in series directly;
+
+4. USB function
+Take a USB key board as example, it has a integrated USB hub inside. It keypad function and touch pad function are
+connected to this hub. And it also has a flash drive connected. Here, this keypad actually has 3 USB functions.
+
+5. USB device can normally draw cuurent from the host through VBUS depending on its states. USB has many states,
+but only 3 are related to power consumption: 
+- Not configured (default state). 
+  In this state, up to 100mA for USB 2.0, and 150mA for USB 3.x. 
+  It is limited because at this moment, host doesn't know who you are.
+- Configured.
+  up to 500mA for USB 2.0, and 900mA for USB 3.x.
+- Suspended.
+  Device is idle and is not in use at this moment. Up to 0.5mA (2.5mA if configured as high power device).
+
+Power Delivery Specifications 2019: allows up to 100W, 5A by 20V. 
+
+
+
+
+
