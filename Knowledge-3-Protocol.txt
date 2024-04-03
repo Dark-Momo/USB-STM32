@@ -1,0 +1,27 @@
+1. Differential States
+Full and High Speed 	: 1 when D+ high > D- low, 0 when D+ low < D- high;
+Low Speed               	: 1 when D+ < D-, 0 when D+ > D-;
+
+Bus lines are by default pulled to low by 2 resistors(15K) at host side;
+(1) Low Speed also pulls D- to 3.3V at device side using 1.5K;
+(2) High/Full Speed also pulls D+ to 3.3V at device side using 1.5K;
+
+2. Bus State
+- SE0: Both lines(D+ and D-) are low;
+- Detached: SE0;
+- Idle: Differential 1;
+- J: Differential 1;
+- K: Opposite to J state;
+
+- Reset(Host asks device to reset itself): SE0 > 10ms;
+- Suspend: When in Idle > 3ms; to save power;
+- Resume(from Suspend): K > 20ms then a EOP;
+- Sync or Start of Packet(SOP): KJKJKJKK;
+- END Of Packet(EOP): SE0 SE0 J;
+
+3. Bit stuffing
+Insert non-information bits into data.
+In USB HS/FS, insert zero after six consecutive ones to ensure state transition so that clock can sync.
+
+
+
