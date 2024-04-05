@@ -19,9 +19,26 @@ Bus lines are by default pulled to low by 2 resistors(15K) at host side;
 - Sync or Start of Packet(SOP): KJKJKJKK;
 - END Of Packet(EOP): SE0 SE0 J;
 
-3. Bit stuffing
+3. Bit stuffing and NRZI (Non-Return-to-Zero Inverter)
 Insert non-information bits into data.
 In USB HS/FS, insert zero after six consecutive ones to ensure state transition so that clock can sync.
+
+NRZI based on bit stuff is well explained in [Video - 20].
+
+4. USB Host Controller
+- USB 1.x has 2 versions of controllers: UHCI, and OHCI.
+  Universal Host Controller Interface (UHCI) needs software to do more on bus management;
+  Open Host Controller Interface (OHCI) needs hareware to do more on bus management;
+
+- USB 2.0 has Extended Host Controller Interface (EHCI).
+--------------------------------------------------------------------------------------------------
+For USB drivers till USB 2.0, driver needs to support all of these three controllers.
+--------------------------------------------------------------------------------------------------
+
+- USB 3.x has Extensible Host Controller Interface (xHCI), which replaces old controllers.
+
+
+
 
 
 
