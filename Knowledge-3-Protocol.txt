@@ -6,7 +6,19 @@ Bus lines are by default pulled to low by 2 resistors(15K) at host side;
 (1) Low Speed also pulls D- to 3.3V at device side using 1.5K;
 (2) High/Full Speed also pulls D+ to 3.3V at device side using 1.5K;
 
-2. Bus State
+2. USB Host Controller
+- USB 1.x has 2 versions of controllers: UHCI, and OHCI.
+  Universal Host Controller Interface (UHCI) needs software to do more on bus management;
+  Open Host Controller Interface (OHCI) needs hareware to do more on bus management;
+
+- USB 2.0 has Extended Host Controller Interface (EHCI).
+--------------------------------------------------------------------------------------------------
+For USB drivers till USB 2.0, driver needs to support all of these three controllers.
+--------------------------------------------------------------------------------------------------
+
+- USB 3.x has Extensible Host Controller Interface (xHCI), which replaces old controllers.
+
+3. Bus State
 - SE0: Both lines(D+ and D-) are low;
 - Detached: SE0;
 - Idle: Differential 1;
@@ -19,23 +31,32 @@ Bus lines are by default pulled to low by 2 resistors(15K) at host side;
 - Sync or Start of Packet(SOP): KJKJKJKK;
 - END Of Packet(EOP): SE0 SE0 J;
 
-3. Bit stuffing and NRZI (Non-Return-to-Zero Inverter)
+4. Bit stuffing and NRZI (Non-Return-to-Zero Inverter)
 Insert non-information bits into data.
 In USB HS/FS, insert zero after six consecutive ones to ensure state transition so that clock can sync.
 
 NRZI based on bit stuff is well explained in [Video - 20].
 
-4. USB Host Controller
-- USB 1.x has 2 versions of controllers: UHCI, and OHCI.
-  Universal Host Controller Interface (UHCI) needs software to do more on bus management;
-  Open Host Controller Interface (OHCI) needs hareware to do more on bus management;
+5. Frames and SOF(Start Of Frame)
+[SOF]==========Data==========[SOF]==========Data==========[SOF]==========Data==========
+        |--------1ms(FS) / 125uS(HS)---------|
 
-- USB 2.0 has Extended Host Controller Interface (EHCI).
---------------------------------------------------------------------------------------------------
-For USB drivers till USB 2.0, driver needs to support all of these three controllers.
---------------------------------------------------------------------------------------------------
+6. Endpoints
+An endpoint is a logical entity that can be seen as data sender or receiver.
+It only describes USB devices, not host. A USB device may contain multiple endpoints, like ports in TCP protocol.
 
-- USB 3.x has Extensible Host Controller Interface (xHCI), which replaces old controllers.
+The data direction of endpoint is considered from host's perspective. 
+For example, if the data will flow out of the endpoint and get into the host, it is a IN endpoint, and the data is IN data.
+IN: from device to host;
+OUT: from host to device;
+An device can have up to 16 IN and 16 OUT endpoints. A sensor can use IN1 to send data to host and use OUT3 to receive
+data from host. A device has INx doesn't mean it also has OUTx. 
+
+Endpoint 0 is an exception.
+- Every device must support the endpoint 0 IN and OUT because it is config endpoint;
+
+
+
 
 
 
