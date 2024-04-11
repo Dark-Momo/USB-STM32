@@ -55,7 +55,30 @@ data from host. A device has INx doesn't mean it also has OUTx.
 Endpoint 0 is an exception.
 - Every device must support the endpoint 0 IN and OUT because it is config endpoint;
 
+----------------------------------------------------------------------------------------------------------------------------
 
+[Packets and Transactions]
+
+1. Data is transmitted in the form of packets in USB. And the bytes are transmitted in Least-Significant Bits first.
+So if you have data byte 0x4F (0b01001111), on bus, it is like below:
+1-1-1-1-0-0-1-0 
+Again, this LSB first is for a byte, not between several bytes.
+
+2. SOP(Start of Packet) and SOF(Start of Frame)
+- Sync or Start of Packet(SOP) is a field inside a packet, which is usually KJKJKJKK;
+- Start of Frame(SOF) is a packet, which contains SOP as one of its field.
+
+3. Packet Types
+Start of Frame Packet: SOP - PID - Frame No. - CRC5 - EOP
+Token Packet         : SOP - PID - ADDR - ENDP - CRC5 - EOP
+Data Packet          : SOP - PID - DATA -------- CRC16 - EOP
+Handshake packet     : SOP - PID - EOP
+
+SOF is a type of its own and it is usually used as sync on bus.
+The latter 3 types are the most frequently used packets in USB.
+
+ADDR is used to indicate which device the host is communicating with;
+ENDP : Endpoint number. To which or from which endpoint.
 
 
 
