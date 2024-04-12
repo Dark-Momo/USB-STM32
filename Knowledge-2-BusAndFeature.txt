@@ -21,7 +21,8 @@ For example, a mouse of the same model, from the same vendor, should have the sa
 But they should have different Serial Number.
 
 (5) Device Address
-Everytime a deive is connected to host, host will assign this device an unique address. This address will change for next hot-plug.
+Every device connected to the host has a unique device address, which is assigned by the host when enumerating. 
+Default address value is 0 before the host assigns a value. This address will change for next hot-plug.
  
 (6) Device Enumeration
 During initial negotiation, host will recognize what the device is, what speed, and what driver for this device.
@@ -29,6 +30,13 @@ During initial negotiation, host will recognize what the device is, what speed, 
 (7) Bus polling/sampling
 Both host and device poll the bus to know the bus's current state, and then determine according actions. 
 USB doesn't have interrupt. The bus state should stay enough long to wait for next polling.
+
+USB doesn't have an interrupt mechanism at PHY level. It uses polling, which means, if the USB controller (PHY) is busy with something else, 
+the bus states will be sampled and stored into a buffer. 
+When the USB controller is back, it will check the buffer to see what has happened when it is not checking the bus.
+
+USB has interrupt transfer and interrupt endpoint. 
+Though the name has 'interrupt', it is still polling. The interrupt here means its signal's latency is guaranteed.
 
 3. USB Bus Topology
 In USB, host and devices are connected to bus according to "tiered-start" topology.
@@ -44,8 +52,8 @@ Up to 127 devices can be connected to bus incluing hubs.
 (5) Up to 5 hubs are allowed to be connected in series directly;
 
 4. USB function
-Take a USB key board as example, it has a integrated USB hub inside. It keypad function and touch pad function are
-connected to this hub. And it also has a flash drive connected. Here, this keypad actually has 3 USB functions.
+Take a USB key board as example, it has a integrated USB hub inside. It keypad function and touch pad function are connected to this hub. 
+And it also has a flash drive connected. Here, this keypad actually has 3 USB functions.
 
 5. USB device can normally draw cuurent from the host through VBUS depending on its states. USB has many states,
 but only 3 are related to power consumption: 

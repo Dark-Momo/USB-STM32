@@ -80,6 +80,39 @@ The latter 3 types are the most frequently used packets in USB.
 ADDR is used to indicate which device the host is communicating with;
 ENDP : Endpoint number. To which or from which endpoint.
 
+4. USB transactions consists of 2 or 3 sequences of below packets:
+(1) Token Packets;
+(2) Data Packets;
+(3) Handshake Packets (Isochoronous transaction doesn't need handshake);
+
+Token packet is always the 1st packet in a transaction, telling who is sending and who should receive the following data packets;
+Handshake packets follows data packets, telling whether data packet is received or not;
+
+Packet Identifier (PID) indicates what the following data packet is for. Token, Data, and Handshake packets have their own PID group.
+
+- Token packet
+It has 4 types of PIDs: 
+(1) IN : Host will read data from device;
+(2) OUT : Host will send data to device;
+(3) SETUP : Host will send SETUP data to device. setup token works only with control endpoints in the device, which is endpoint 0.
+(4) SOF
+
+- Data Packet
+It has 4 types of PIDs: DATA0/DATA1/DATA2/MDATA. DATA2 and MDATA are only available in High Speed Mode;
+(1) DATA0 and DATA1 are for the same purpose of data transmission. They are used alternatively just for error checking. Data payload can be 0-length.
+
+- Handshake Packet
+It has 4 types of PIDs: ACK/NAK/STALL/NYET. NYET is  only available in High Speed Mode.
+Handshake packet indicates the end of a transaction. 
+(1) ACK : Receiver correctly receives the packet;
+(2) NAK : Receiver can't receive, ot the sender can send the data now;
+(3) STALL : Error happened, device put its endpoint on hold; Received SETUP is not supported;
+
+5. USB is host driven
+USB transactions are triggered by the host.
+The host starts a transaction by sending Token packets. Only the host can send Token packets. USB devices can use a Handshake packet to respond. 
+
+
 
 
 
