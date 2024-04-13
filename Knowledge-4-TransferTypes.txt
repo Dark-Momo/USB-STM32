@@ -1,0 +1,7 @@
+1. There are 4 transfer/endpoint types
+- Interrupt transfer/endpoint;
+- Bulk transfer/endpoint;
+- Isochronous transfer/endpoint;
+- Control transfer/endpoint: Endpoint 0 for configure;
+
+USB device tells the host about the configuration of its endpoints in the early stage of device enumeration.
