@@ -5,3 +5,16 @@
 - Control transfer/endpoint: Endpoint 0 for configure;
 
 USB device tells the host about the configuration of its endpoints in the early stage of device enumeration.
+
+2. Interrupt endpoint/transfer
+- Though the name has 'interrupt', it is still polling. The interrupt here means its signal's latency is guaranteed.
+- Periodic transfer with regular update from device, and guaranteed bandwidth(limited known latency).
+  Limited latency : A device can send interrupt transfer to host at a interval of no more than a certain number of time.
+- Error-free transfer, which means it has error detection;
+- Maximum payload : up to 64-Byte for FS, and 1024-Byte for HS(Small piece of data);
+- Example : Mouse, Keyboard, Joystick;
+
+Interrupt transfer has handshake, which means no matter host or device, when it receives request/data from other
+side, it needs to send back a ACK(everything ok)/NAK(not ready yet)/STALL(error).
+
+Check page [Interrupt endpoint/transfer] in slides.
