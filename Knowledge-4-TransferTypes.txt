@@ -18,3 +18,19 @@ Interrupt transfer has handshake, which means no matter host or device, when it 
 side, it needs to send back a ACK(everything ok)/NAK(not ready yet)/STALL(error).
 
 Check page [Interrupt endpoint/transfer] in slides.
+
+3. Bulk endpoint/transfer
+- Non-periodic transfer (need based);
+- Has handshake; 
+
+Check page [Bulk endpoint/transfer] in slides.
+
+4. Isochronous endpoint/transfer
+- Periodic transfer;
+- No handshake;
+- No error checking;
+
+Check page [Isochronous endpoint/transfer] in slides.
+
+
+
