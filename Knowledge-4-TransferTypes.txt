@@ -27,10 +27,22 @@ Check page [Bulk endpoint/transfer] in slides.
 
 4. Isochronous endpoint/transfer
 - Periodic transfer;
-- No handshake;
+- NO handshake;
 - No error checking;
 
 Check page [Isochronous endpoint/transfer] in slides.
+
+5. Control endpoint/transfer
+- Non-periodic, error-free;
+- Endpoint 0 (IN and OUT) must be configured to operate as Control Transfer;
+- Enumeration happens on Endpoint 0;
+
+Every control transfer consists of three stages:
+1. The Setup Stage (one transaction);
+2. The Data Stage (Optional; zero to multiple transactions);
+3. The Status Stage (one transaction);
+
+
 
 
 
