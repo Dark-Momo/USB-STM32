@@ -21,7 +21,8 @@ Check page [Interrupt endpoint/transfer] in slides.
 
 3. Bulk endpoint/transfer
 - Non-periodic transfer (need based);
-- Has handshake; 
+- Has handshake;
+-Example : Writing data to an external USB storage;
 
 Check page [Bulk endpoint/transfer] in slides.
 
@@ -29,6 +30,7 @@ Check page [Bulk endpoint/transfer] in slides.
 - Periodic transfer;
 - NO handshake;
 - No error checking;
+- Example: Typically use with cam stream and microphone.
 
 Check page [Isochronous endpoint/transfer] in slides.
 
@@ -38,9 +40,16 @@ Check page [Isochronous endpoint/transfer] in slides.
 - Enumeration happens on Endpoint 0;
 
 Every control transfer consists of three stages:
-1. The Setup Stage (one transaction);
-2. The Data Stage (Optional; zero to multiple transactions);
-3. The Status Stage (one transaction);
+(1). The Setup Stage (one transaction);
+(2). The Data Stage (Optional; zero to multiple transactions);
+(3). The Status Stage (one transaction);
+
+6. Bus Bandwidth Allocation
+The host is responsible for allocating the bandwidth of the bus for each endpoint of that device.
+
+Bandwidth Allocation Priority: Interrupt and Isochronous -> Control -> Bulk;
+
+
 
 
 
