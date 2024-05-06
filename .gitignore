@@ -1,9 +1,11 @@
 # Eclipse
-.metadata
-.settings
+USB-STM32F407V-DISCO/.metadata
+USB-STM32F407V-DISCO/USB_Device/.settings
+USB-STM32F407V-DISCO/USB_Device/Debug/
+
 [Rr]elease
 [Dd]ebug
-*/Debug/
+
 .launch
 
 # Below are from github C .gitignore file.
