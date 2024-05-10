@@ -1,0 +1,25 @@
+ [Attention - 1]
+ When this project is created:
+ 1. It is created using board selector, not from chip type;
+ 2. In "Project Setup" step, we select "Empty" at "Targeted Project Type" step.
+    So when the project is created, all the folders are empty.
+ 3. We then copied below folders from download STM32F4 CMSIS package
+    STM32Cube_FW_F4_V1.28.0\Drivers\CMSIS\Device and
+    STM32Cube_FW_F4_V1.28.0\Drivers\CMSIS\Include
+    into Inc folder in our project. Some useless folders are deleted, such as:
+    (1) Inc/CMSIS/Device/ST/STM32F4xx/Include only has stm32f407xx.h, stm32f4xx.h and system_stm32f4xx.h;
+    (2) Inc/CMSIS/Include keeps as original;
+ 4. Add above 2 Include paths to Project -> Properties -> C/C++ General -> Path and Symbols -> Include;
+ 5. In Project -> Properties -> C/C++ General -> Path and Symbols -> Symbols, add "STM32F407xx".
+    This is a macro needed by stm32f4xx.h.
+ 
+ Now compile the main.c, you should get it pass.
+ 6. The course also deleted syscalls.c and sysmem.c under Src folder of the project. We don't do that yet.
+
+ [Attention - 2]
+ Debugging USB can't use breakpoint because it will bring long pause on timing, making host think the device
+ has timed out, so it will keep rebooting the device.
+ 
+ We use logging for USB debug, which means we are going to send message from our device to our host.
+ SWO (Single Wire Output) is a way to send message from MCU to debugging host.
+ It is available in M3, M4, M7, not in M0.
