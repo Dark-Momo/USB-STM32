@@ -6,13 +6,14 @@
  *************************************************************************************************************
  */
 
-#include <stdint.h>
+#include "Helpers/logger.h"
 
 // Added for project
 #include "stm32f4xx.h"
 
 int main(void)
 {
-    /* Loop forever */
+	log_info("Program entry point");
+	/* Loop forever */
 	for(;;);
 }
